@@ -11,16 +11,13 @@ const schema = new Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
         },
         favoriteProducts: {
             type: [ProductSchema],
-            default: [],
-            unique: true,
-            index: true,
+            required: false,
         },
     },
-    { timestamps: true },
+    { timestamps: true }
 );
 
 export default model("Customer", schema);

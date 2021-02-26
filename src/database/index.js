@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 import databaseConfig from "../configurations/database";
 
-class Database {
+class DatabaseConnector {
     constructor() {
         this.initMongo();
     }
@@ -14,4 +14,4 @@ class Database {
     }
 }
 
-export default new Database();
+export default new DatabaseConnector();

@@ -1,5 +1,6 @@
 import Redis from "ioredis";
 
+import logger from "../utils/Logger";
 import cacheConfig from "../configurations/cache";
 
 class CacheConnector {
@@ -26,7 +27,7 @@ class CacheConnector {
             this.listen();
             return this.client;
         } catch (e) {
-            console.log("Redis error");
+            logger.error("Redis error");
         }
     }
 
@@ -40,17 +41,17 @@ class CacheConnector {
             this.listen();
             return this.client;
         } catch (e) {
-            console.log("Redis error");
+            logger.error("Redis error", e);
         }
     }
 
     listen() {
         this.client.on("connect", () => {
-            console.log("Redis client connected");
+            logger.info("Redis client connected");
         });
 
         this.client.on("error", () => {
-            console.log("Something went wrong on Redis");
+            logger.error("Something went wrong on Redis");
         });
     }
 }

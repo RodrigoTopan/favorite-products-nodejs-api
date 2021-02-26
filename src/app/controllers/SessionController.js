@@ -1,40 +1,31 @@
 import jwt from "jsonwebtoken";
 
-import * as Yup from "yup";
-
 import UserModel from "../models/User";
 
 import authConfig from "../../configurations/auth";
 
+import HttpError from "../../utils/HttpError";
+
 class SesssionController {
     async store(req, res) {
-        const schema = Yup.object().shape({
-            username: Yup.string().required(),
-            password: Yup.string().required().min(6),
-        });
-
-        if (!(await schema.isValid(req.body))) {
-            return res.status(400).json({ error: "Validation fails" });
-        }
-
         const { username, password } = req.body;
 
         const user = await UserModel.findOne({ username });
 
         if (!user) {
-            return res.status(400).json({ error: "User not found" });
+            throw new HttpError("Access denied", 401);
         }
 
         if (!(await user.checkPassword(password))) {
-            return res.status(400).json({ error: "Password does not match" });
+            throw new HttpError("Access denied", 401);
         }
 
-        const { id, name } = user;
+        const { id } = user;
 
         return res.json({
             user: {
                 id,
-                name,
+                username,
             },
             token: jwt.sign({ id }, authConfig.secret, {
                 expiresIn: authConfig.expiresIn,

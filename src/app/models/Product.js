@@ -22,7 +22,7 @@ const ProductSchema = new Schema(
             type: Number,
         },
     },
-    { _id: false },
+    { _id: false }
 );
 
 export default ProductSchema;

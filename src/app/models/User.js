@@ -14,7 +14,7 @@ const UserSchema = new Schema(
             required: true,
         },
     },
-    { timestamps: true },
+    { timestamps: true }
 );
 
 UserSchema.methods = {

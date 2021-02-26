@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./bootstrap";
 import app from "./app";
 
 const { APP_PORT } = process.env;
