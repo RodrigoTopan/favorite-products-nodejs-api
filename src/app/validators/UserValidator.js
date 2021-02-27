@@ -1,21 +1,20 @@
-import * as Yup from "yup";
-
+import Joi from "@hapi/joi";
 import HttpError from "@utils/HttpError";
 
 class UserValidator {
     async store(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                username: Yup.string().required(),
-                password: Yup.string().required(),
-            });
+        const schema = Joi.object({
+            username: Joi.string().required(),
+            password: Joi.string().required(),
+        });
 
-            await schema.validate(req.body, { abortEarly: false });
+        const { error } = schema.validate(req.body, { abortEarly: false });
 
-            next();
-        } catch (error) {
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+
+        next();
     }
 }
 

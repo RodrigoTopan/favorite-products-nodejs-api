@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import mongoose from "mongoose";
 import request from "supertest";
 import app from "../../src/app";
 
@@ -7,10 +8,13 @@ import CustomerModel from "../../src/app/models/Customer";
 
 describe("User", () => {
     beforeEach(async () => {
-        await Promise.all([
-            UserModel.deleteMany({}),
-            CustomerModel.deleteMany({}),
-        ]);
+        Promise.all([UserModel.deleteMany({}), CustomerModel.deleteMany({})]);
+    });
+
+    afterAll((done) => {
+        // Closing the DB connection allows Jest to exit successfully.
+        mongoose.connection.close();
+        done();
     });
 
     describe("/POST - CREATE USER", () => {

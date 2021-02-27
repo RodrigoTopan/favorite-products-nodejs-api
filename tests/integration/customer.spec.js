@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 
+import mongoose from "mongoose";
 import request from "supertest";
 import app from "../../src/app";
 
@@ -25,6 +26,12 @@ describe("Customer", () => {
         });
 
         token = response.body.token;
+    });
+
+    afterAll((done) => {
+        // Closing the DB connection allows Jest to exit successfully.
+        mongoose.connection.close();
+        done();
     });
 
     describe("/POST - CREATE CUSTOMER", () => {

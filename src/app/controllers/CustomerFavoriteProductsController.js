@@ -2,20 +2,13 @@ import customerFavoriteProductsService from "@services/CustomerFavoriteProductsS
 
 class CustomerFavoriteProductController {
     async store(req, res) {
-        try {
-            const { customerId, productId } = req.params;
-            const addedFavoriteProduct = await customerFavoriteProductsService.add(
-                {
-                    customerId,
-                    productId,
-                }
-            );
+        const { customerId, productId } = req.params;
+        const addedFavoriteProduct = await customerFavoriteProductsService.add({
+            customerId,
+            productId,
+        });
 
-            return res.status(200).json(addedFavoriteProduct);
-        } catch (e) {
-            console.log(e);
-            throw e;
-        }
+        return res.status(200).json(addedFavoriteProduct);
     }
 
     async delete(req, res) {

@@ -1,67 +1,67 @@
-import * as Yup from "yup";
+import Joi from "@hapi/joi";
+
+import joiObjectid from "joi-objectid";
 
 import HttpError from "@utils/HttpError";
 
+Joi.objectId = joiObjectid(Joi);
+
 class CustomerValidator {
-    async index(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                page: Yup.number().required(),
-            });
+    index(req, res, next) {
+        const schema = Joi.object({
+            page: Joi.number().required(),
+        });
 
-            await schema.validate(req.query, { abortEarly: false });
+        const { error } = schema.validate(req.query, { abortEarly: false });
 
-            next();
-        } catch (error) {
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+
+        next();
     }
 
-    async store(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                name: Yup.string().required(),
-                email: Yup.string().email().required(),
-            });
+    store(req, res, next) {
+        const schema = Joi.object({
+            name: Joi.string().required(),
+            email: Joi.string().email().required(),
+        });
 
-            await schema.validate(req.body, { abortEarly: false });
+        const { error } = schema.validate(req.body);
 
-            next();
-        } catch (error) {
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+
+        next();
     }
 
-    async update(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                id: Yup.string().required(),
-                name: Yup.string().required(),
-                email: Yup.string().email().required(),
-            });
+    update(req, res, next) {
+        const schema = Joi.object({
+            id: Joi.objectId().required(),
+            name: Joi.string().required(),
+            email: Joi.string().email().required(),
+        });
 
-            await schema.validate(
-                { ...req.body, ...req.params },
-                { abortEarly: false }
-            );
-
-            next();
-        } catch (error) {
+        const { error } = schema.validate({ ...req.body, ...req.params });
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+
+        next();
     }
 
-    async delete(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                id: Yup.string().required(),
-            });
-            await schema.validate(req.params, { abortEarly: false });
+    delete(req, res, next) {
+        const schema = Joi.object({
+            id: Joi.objectId().required(),
+        });
 
-            next();
-        } catch (error) {
+        const { error } = schema.validate(req.params);
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+
+        next();
     }
 }
 

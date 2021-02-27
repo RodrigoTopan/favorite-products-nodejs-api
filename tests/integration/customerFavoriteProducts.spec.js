@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-
+import mongoose from "mongoose";
 import request from "supertest";
 import app from "../../src/app";
 
@@ -29,6 +29,12 @@ describe("CustomerFavoriteProduct", () => {
         token = response.body.token;
     });
 
+    afterAll((done) => {
+        // Closing the DB connection allows Jest to exit successfully.
+        mongoose.connection.close();
+        done();
+    });
+
     describe("/POST - ADD PRODUCT TO FAVORITE LIST", () => {
         it("should be able to add many favorite products to customer list when user API is authenticated", async () => {
             const { body: customer } = await request(app)
@@ -56,10 +62,7 @@ describe("CustomerFavoriteProduct", () => {
                     `/customer/${customer.id}/product/4bd442b1-4a7d-2475-be97-a7b22a08a024`
                 )
                 .set("Authorization", `bearer ${token}`)
-                .send({
-                    name: "Rodrigo",
-                    email: "rodrigo@gmail.com",
-                });
+                .send();
 
             expect(response.status).toBe(200);
             expect(response.body.name).toStrictEqual("Rodrigo");
@@ -78,7 +81,7 @@ describe("CustomerFavoriteProduct", () => {
     });
 
     describe("/DELETE - REMOVE PRODUCT TO FAVORITE LIST", () => {
-        it("should be able to remove many favorite products to customer list when user API is authenticated", async () => {
+        it("should be able to remove favorite products to customer list when user API is authenticated", async () => {
             const { body: customer } = await request(app)
                 .post("/customer")
                 .set("Authorization", `bearer ${token}`)
@@ -104,20 +107,14 @@ describe("CustomerFavoriteProduct", () => {
                     `/customer/${customer.id}/product/4bd442b1-4a7d-2475-be97-a7b22a08a024`
                 )
                 .set("Authorization", `bearer ${token}`)
-                .send({
-                    name: "Rodrigo",
-                    email: "rodrigo@gmail.com",
-                });
+                .send();
 
             const response = await request(app)
                 .delete(
                     `/customer/${customer.id}/product/4bd442b1-4a7d-2475-be97-a7b22a08a024`
                 )
                 .set("Authorization", `bearer ${token}`)
-                .send({
-                    name: "Rodrigo",
-                    email: "rodrigo@gmail.com",
-                });
+                .send();
 
             expect(response.status).toBe(200);
             expect(response.body.name).toStrictEqual("Rodrigo");

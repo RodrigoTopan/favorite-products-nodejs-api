@@ -1,36 +1,38 @@
-import * as Yup from "yup";
+import Joi from "@hapi/joi";
+import joiObjectid from "joi-objectid";
 
 import HttpError from "@utils/HttpError";
 
+Joi.objectId = joiObjectid(Joi);
+
 class CustomerValidator {
-    async store(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                customerId: Yup.string().required(),
-                productId: Yup.string().required(),
-            });
+    store(req, res, next) {
+        const schema = Joi.object({
+            customerId: Joi.objectId().required(),
+            productId: Joi.string().guid().required(),
+        });
 
-            await schema.validate(req.params, { abortEarly: false });
+        const { error } = schema.validate(req.params);
 
-            next();
-        } catch (error) {
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+
+        next();
     }
 
-    async delete(req, res, next) {
-        try {
-            const schema = Yup.object().shape({
-                customerId: Yup.string().required(),
-                productId: Yup.string().required(),
-            });
+    delete(req, res, next) {
+        const schema = Joi.object({
+            customerId: Joi.objectId().required(),
+            productId: Joi.string().guid().required(),
+        });
 
-            await schema.validate(req.params, { abortEarly: false });
+        const { error } = schema.validate(req.params);
 
-            next();
-        } catch (error) {
+        if (error) {
             throw new HttpError("Validation fails", 400);
         }
+        next();
     }
 }
 
