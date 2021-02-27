@@ -7,7 +7,7 @@ import health from "express-healthcheck";
 import "express-async-errors";
 
 import swaggerUi from "swagger-ui-express";
-import swaggerFile from "./swagger.json";
+import swaggerFile from "../swagger.json";
 
 import routes from "./routes"; // import express-async errors before load routes
 

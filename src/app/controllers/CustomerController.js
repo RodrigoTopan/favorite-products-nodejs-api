@@ -2,11 +2,15 @@ import customerService from "@services/CustomerService";
 
 class CustomerController {
     async index(req, res) {
-        const customers = await customerService.findByPage({
-            page: req.query.page,
-            limit: 20,
-        });
-        return res.json(customers);
+        try {
+            const customers = await customerService.findByPage({
+                page: req.query.page,
+                limit: 20,
+            });
+            return res.json(customers);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     async find(req, res) {

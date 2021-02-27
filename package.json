@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "cross-env NODE_ENV=production sucrase-node src/server.js",
     "dev": "nodemon src/server.js",
     "build": "cross-env NODE_ENV=production sucrase ./src -d ./dist --transforms imports",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
     "lint": "eslint --fix src --ext .js",
     "postinstall": "husky install"
   },
