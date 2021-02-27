@@ -19,7 +19,7 @@
 <details open="open">
   <summary><h2 style="display: inline-block">Sumário</h2></summary>
   <ol>
-    <li><a href="#tech">Tecnologias Utilizadas</a></li>
+    <li><a href="#tjustifyech">Tecnologias Utilizadas</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
