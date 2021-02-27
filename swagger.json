@@ -46,7 +46,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails or User already exists",
+                        "description": "Validation Failed or User already exists",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -84,7 +84,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -127,7 +127,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -160,7 +160,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -197,7 +197,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -234,7 +234,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -273,7 +273,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -310,7 +310,7 @@
                         }
                     },
                     "400": {
-                        "description": "Validation Fails",
+                        "description": "Validation Failed",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }

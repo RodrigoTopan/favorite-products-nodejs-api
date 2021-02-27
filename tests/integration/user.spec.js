@@ -51,7 +51,7 @@ describe("User", () => {
             });
 
             expect(response.status).toBe(400);
-            expect(response.body).toStrictEqual({ error: "Validation fails" });
+            expect(response.body).toStrictEqual({ error: "Validation Failed" });
         });
 
         it("should not be able to register a user if password is empty", async () => {
@@ -61,7 +61,7 @@ describe("User", () => {
             });
 
             expect(response.status).toBe(400);
-            expect(response.body).toStrictEqual({ error: "Validation fails" });
+            expect(response.body).toStrictEqual({ error: "Validation Failed" });
         });
     });
 });

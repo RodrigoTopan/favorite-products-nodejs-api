@@ -15,7 +15,7 @@ class CustomerValidator {
         const { error } = schema.validate(req.query, { abortEarly: false });
 
         if (error) {
-            throw new HttpError("Validation fails", 400);
+            throw new HttpError("Validation Failed", 400);
         }
 
         next();
@@ -30,7 +30,7 @@ class CustomerValidator {
         const { error } = schema.validate(req.body);
 
         if (error) {
-            throw new HttpError("Validation fails", 400);
+            throw new HttpError("Validation Failed", 400);
         }
 
         next();
@@ -45,7 +45,7 @@ class CustomerValidator {
 
         const { error } = schema.validate({ ...req.body, ...req.params });
         if (error) {
-            throw new HttpError("Validation fails", 400);
+            throw new HttpError("Validation Failed", 400);
         }
 
         next();
@@ -58,7 +58,7 @@ class CustomerValidator {
 
         const { error } = schema.validate(req.params);
         if (error) {
-            throw new HttpError("Validation fails", 400);
+            throw new HttpError("Validation Failed", 400);
         }
 
         next();

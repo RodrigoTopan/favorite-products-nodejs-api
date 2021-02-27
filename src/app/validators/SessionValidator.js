@@ -12,7 +12,7 @@ class SessionValidator {
         const { error } = schema.validate(req.body);
 
         if (error) {
-            throw new HttpError("Validation fails", 400);
+            throw new HttpError("Validation Failed", 400);
         }
 
         next();

@@ -102,12 +102,23 @@ describe("CustomerFavoriteProduct", () => {
                 title: "Cadeira para Auto Axiss Bébé Confort Robin Red",
             });
 
-            await request(app)
+            const { body: addedFavoriteProduct } = await request(app)
                 .post(
                     `/customer/${customer.id}/product/4bd442b1-4a7d-2475-be97-a7b22a08a024`
                 )
                 .set("Authorization", `bearer ${token}`)
                 .send();
+
+            expect(addedFavoriteProduct.favoriteProducts).toStrictEqual([
+                {
+                    price: 1999,
+                    image:
+                        "http://challenge-api.luizalabs.com/images/4bd442b1-4a7d-2475-be97-a7b22a08a024.jpg",
+                    brand: "bébé confort",
+                    id: "4bd442b1-4a7d-2475-be97-a7b22a08a024",
+                    title: "Cadeira para Auto Axiss Bébé Confort Robin Red",
+                },
+            ]);
 
             const response = await request(app)
                 .delete(
@@ -120,6 +131,59 @@ describe("CustomerFavoriteProduct", () => {
             expect(response.body.name).toStrictEqual("Rodrigo");
             expect(response.body.email).toStrictEqual("rodrigo@gmail.com");
             expect(response.body.favoriteProducts).toStrictEqual([]);
+        });
+
+        it("should not be able to remove favorite products to customer list when customerId or productId are not valid", async () => {
+            const { body: customer } = await request(app)
+                .post("/customer")
+                .set("Authorization", `bearer ${token}`)
+                .send({
+                    name: "Rodrigo",
+                    email: "rodrigo@gmail.com",
+                });
+
+            jest.spyOn(
+                customerFavoriteProductsService,
+                "findProduct"
+            ).mockResolvedValue({
+                price: 1999,
+                image:
+                    "http://challenge-api.luizalabs.com/images/4bd442b1-4a7d-2475-be97-a7b22a08a024.jpg",
+                brand: "bébé confort",
+                id: "4bd442b1-4a7d-2475-be97-a7b22a08a024",
+                title: "Cadeira para Auto Axiss Bébé Confort Robin Red",
+            });
+
+            await request(app)
+                .post(
+                    `/customer/${customer.id}/product/4bd442b1-4a7d-2475-be97-a7b22a08a024`
+                )
+                .set("Authorization", `bearer ${token}`)
+                .send();
+
+            const responseInvalidProductId = await request(app)
+                .delete(
+                    `/customer/${customer.id}/product/4bd442b1-4a7d-2475-be97`
+                )
+                .set("Authorization", `bearer ${token}`)
+                .send();
+
+            expect(responseInvalidProductId.status).toBe(400);
+            expect(responseInvalidProductId.body.error).toStrictEqual(
+                "Validation Failed"
+            );
+
+            const responseInvalidCustomerId = await request(app)
+                .delete(
+                    `/customer/${customer.id}1/product/4bd442b1-4a7d-2475-be97-a7b22a08a024`
+                )
+                .set("Authorization", `bearer ${token}`)
+                .send();
+
+            expect(responseInvalidCustomerId.status).toBe(400);
+            expect(responseInvalidCustomerId.body.error).toStrictEqual(
+                "Validation Failed"
+            );
         });
     });
 });

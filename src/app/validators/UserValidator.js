@@ -11,7 +11,7 @@ class UserValidator {
         const { error } = schema.validate(req.body, { abortEarly: false });
 
         if (error) {
-            throw new HttpError("Validation fails", 400);
+            throw new HttpError("Validation Failed", 400);
         }
 
         next();
