@@ -1,5 +1,4 @@
 import Joi from "@hapi/joi";
-
 import HttpError from "@utils/HttpError";
 
 class SessionValidator {

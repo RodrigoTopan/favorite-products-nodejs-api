@@ -1,10 +1,8 @@
 import axios from "axios";
-
-import logger from "../../utils/Logger";
-import HttpError from "../../utils/HttpError";
-import CustomerModel from "../models/Customer";
-
 import cache from "../../cache";
+import HttpError from "../../utils/HttpError";
+import logger from "../../utils/Logger";
+import CustomerModel from "../models/Customer";
 
 const { DEFAULT_EXPIRE_CACHE = 300 } = process.env;
 

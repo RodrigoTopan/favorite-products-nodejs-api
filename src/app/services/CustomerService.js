@@ -1,20 +1,19 @@
-import logger from "@utils/Logger";
-
-import CustomerModel from "@models/Customer";
-
-import HttpError from "@utils/HttpError";
-
 import cache from "@cache";
+import CustomerModel from "@models/Customer";
+import HttpError from "@utils/HttpError";
+import logger from "@utils/Logger";
 
 const { DEFAULT_EXPIRE_CACHE = 300 } = process.env;
 
 class CustomerService {
     async findByPage({ page, limit = 20 }) {
-        const cachedCustomers = await cache.get(`CUSTOMERS_PAGE:${page}`);
+        const cachedCustomers = JSON.parse(
+            await cache.get(`CUSTOMERS_PAGE:${page}`)
+        );
 
-        if (cachedCustomers) {
+        if (cachedCustomers && cachedCustomers.length) {
             logger.info("found cached customers page");
-            return JSON.parse(cachedCustomers);
+            return cachedCustomers;
         }
 
         const customers = await CustomerModel.find()

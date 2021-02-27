@@ -1,5 +1,4 @@
 import UserModel from "@models/User";
-
 import HttpError from "@utils/HttpError";
 
 class UserService {

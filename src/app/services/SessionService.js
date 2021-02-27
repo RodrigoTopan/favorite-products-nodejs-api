@@ -1,10 +1,7 @@
-import jwt from "jsonwebtoken";
-
-import UserModel from "@models/User";
-
 import authConfig from "@configurations/auth";
-
+import UserModel from "@models/User";
 import HttpError from "@utils/HttpError";
+import jwt from "jsonwebtoken";
 
 class SessionService {
     async authenticate({ username, password }) {

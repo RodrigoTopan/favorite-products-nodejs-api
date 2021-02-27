@@ -1,7 +1,6 @@
 import Redis from "ioredis";
-
-import logger from "@utils/Logger";
 import cacheConfig from "@configurations/cache";
+import logger from "@utils/Logger";
 
 class CacheConnector {
     constructor() {

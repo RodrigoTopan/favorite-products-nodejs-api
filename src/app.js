@@ -1,20 +1,13 @@
-import "./bootstrap";
-
-import express from "express";
-
 import cors from "cors";
-
-import health from "express-healthcheck";
-
+import express from "express";
 import "express-async-errors";
-
+import health from "express-healthcheck";
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "../swagger.json";
-
-import routes from "./routes"; // import express-async errors before load routes
-
-import "./database";
+import "./bootstrap";
 import "./cache";
+import "./database";
+import routes from "./routes"; // import express-async errors before load routes
 
 class App {
     constructor() {

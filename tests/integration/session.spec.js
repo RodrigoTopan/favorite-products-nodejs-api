@@ -2,9 +2,8 @@
 import mongoose from "mongoose";
 import request from "supertest";
 import app from "../../src/app";
-
-import UserModel from "../../src/app/models/User";
 import CustomerModel from "../../src/app/models/Customer";
+import UserModel from "../../src/app/models/User";
 
 describe("Session/Login", () => {
     beforeEach(async () => {

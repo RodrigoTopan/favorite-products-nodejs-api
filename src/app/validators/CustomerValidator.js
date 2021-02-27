@@ -1,8 +1,6 @@
 import Joi from "@hapi/joi";
-
-import joiObjectid from "joi-objectid";
-
 import HttpError from "@utils/HttpError";
+import joiObjectid from "joi-objectid";
 
 Joi.objectId = joiObjectid(Joi);
 
