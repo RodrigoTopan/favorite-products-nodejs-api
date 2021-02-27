@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.89% </span>
+                <span class="strong">77.03% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/74</span>
+                <span class='fraction'>57/74</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">81.25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>13/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.86% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.89% </span>
+                <span class="strong">77.03% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/74</span>
+                <span class='fraction'>57/74</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -158,34 +158,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -231,35 +231,35 @@ class CustomerFavoriteProductsService {
     }
 &nbsp;
     async remove({ customerId, productId }) {
-        await this.validateCusto<span class="fstat-no" title="function not covered" >mer(customerId);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return CustomerModel.findByIdAndUpdate(</span>
-<span class="cstat-no" title="statement not covered" >            customerId,</span>
-<span class="cstat-no" title="statement not covered" >            {</span>
-<span class="cstat-no" title="statement not covered" >                $pull: { favoriteProducts: { id: productId } },</span>
-<span class="cstat-no" title="statement not covered" >            },</span>
-<span class="cstat-no" title="statement not covered" >            { new: true }</span>
-<span class="cstat-no" title="statement not covered" >        );</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    async validateCustomer(id) {</span>
-<span class="cstat-no" title="statement not covered" >        const customerExists = await CustomerModel.findById(id).lean();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-        if (!customerExists)<span class="fstat-no" title="function not covered" > {</span>
-<span class="cstat-no" title="statement not covered" >            throw new HttpError("Customer does not exist", 404);</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    async findProduct(id) {</span>
-<span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            const cachedProduct = await cache.get(`PRODUCT:${id}`);</span>
-<span class="cstat-no" title="statement not covered" >            if (cachedProduct) {</span>
-<span class="cstat-no" title="statement not covered" >                logger.info("GETTING PRODUCT FROM CACHE");</span>
-                return <span class="fstat-no" title="function not covered" >cachedProduct;</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            const { PRODUCTS_API_URL } = process.env;</span>
-<span class="cstat-no" title="statement not covered" >            const { data: foundProduct } = await axios.get(</span>
+        await this.validateCustomer(customerId);
+&nbsp;
+        return CustomerModel.findByIdAndUpdate(
+            customerId,
+            {
+                $pull: { favoriteProducts: { id: productId } },
+            },
+            { new: true }
+        );
+    }
+&nbsp;
+    async validateCustomer(id) {
+        const customerExists = await CustomerModel.findById(id).lean();
+&nbsp;
+        if (!cus<span class="branch-0 cbranch-no" title="branch not covered" >tomerE</span>xists) {
+            throw new HttpError("Customer does not exist", 404);
+        }
+    }
+&nbsp;
+    async findProduct(id) {
+        try {
+            const cachedProduct = await cache.get(`PRODUCT:${id}`);
+            if (cachedProduct) {
+                logger.info("GETTING PRODUCT FROM CACHE");
+<span class="branch-0 cbranch-no" title="branch not covered" >                r</span>eturn cachedProduct;
+            }
+&nbsp;
+            const { PRODUCTS_API_URL } = process.env;
+            const { data: foundProduct } = await axi<span class="branch-0 cbranch-no" title="branch not covered" >os.get(</span>
 <span class="cstat-no" title="statement not covered" >                `${PRODUCTS_API_URL}/${id}/`</span>
 <span class="cstat-no" title="statement not covered" >            );</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -286,7 +286,7 @@ class CustomerFavoriteProductsService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Feb 27 2021 13:06:43 GMT-0300 (Horário Padrão de Brasília)
+                at Sat Feb 27 2021 13:16:52 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../prettify.js"></script>
