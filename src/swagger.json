@@ -1,0 +1,461 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Luiza labs code challenge favorite products",
+        "description": "Manage customers and theirs favorite products list",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": ["http", "https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/user": {
+            "post": {
+                "summary": "Register a user",
+                "tags": ["Users"],
+                "description": "Create/Register a user in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "Register user",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "User registration Success",
+                        "schema": {
+                            "$ref": "#/definitions/CreateUserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails or User already exists",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/session": {
+            "post": {
+                "summary": "Create/Authenticate a Session",
+                "tags": ["Sessions"],
+                "description": "Create a session using user credentials with JWT",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "Login user",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "User Successfully authenticated",
+                        "schema": {
+                            "$ref": "#/definitions/UserSessionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Create a Customer",
+                "tags": ["Customers"],
+                "description": "Create a customer",
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Create customer",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer Successfully created",
+                        "schema": {
+                            "$ref": "#/definitions/CreateCustomerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Find a customer by id",
+                "tags": ["Customers"],
+                "description": "Find a specified customer by id",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer",
+                        "schema": {
+                            "$ref": "#/definitions/FindCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "update": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Update a customer by id",
+                "tags": ["Customers"],
+                "description": "Update a specified customer by id",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer",
+                        "schema": {
+                            "$ref": "#/definitions/FindCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Delete a customer by id",
+                "tags": ["Customers"],
+                "description": "Delete a specified customer by id",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer",
+                        "schema": {
+                            "$ref": "#/definitions/FindCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customerId}/product/{productId}": {
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Add a product into customer favorite products list",
+                "tags": ["Customers"],
+                "description": "Add a product into customer favorite products list",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer",
+                        "schema": {
+                            "$ref": "#/definitions/FindCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Remove a product into customer favorite products list",
+                "tags": ["Customers"],
+                "description": "Remove a product into customer favorite products list",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer",
+                        "schema": {
+                            "$ref": "#/definitions/FindCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Fails",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "CreateUserResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "UserSessionResponse": {
+            "properties": {
+                "user": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "Customer": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "CreateCustomerResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "FindCustomer": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "favoriteProducts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Product"
+                    }
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "__v": {
+                    "type": "number"
+                }
+            }
+        },
+        "Product": {
+            "properties": {
+                "price": {
+                    "type": "number"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "brand": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "ErrorResponse": {
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "DeleteCustomerResponse": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

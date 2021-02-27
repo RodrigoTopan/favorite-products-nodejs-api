@@ -1,84 +1,38 @@
-import CustomerModel from "../models/Customer";
-
-import HttpError from "../../utils/HttpError";
+import customerService from "@services/CustomerService";
 
 class CustomerController {
     async index(req, res) {
-        const limit = 20;
-        const customers = await CustomerModel.find()
-            .limit(limit)
-            .skip(limit * req.query.page)
-            .sort({ createdAt: "desc" })
-            .lean();
-
+        const customers = await customerService.findByPage({
+            page: req.query.page,
+            limit: 20,
+        });
         return res.json(customers);
     }
 
     async find(req, res) {
-        const customer = await CustomerModel.findById(req.params.id).lean();
-
-        if (!customer) {
-            throw new HttpError("Customer not found", 404);
-        }
-
+        const customer = await customerService.findById(req.params.id);
         return res.json(customer);
     }
 
     async store(req, res) {
-        const customerExists = await CustomerModel.findOne({
+        const { id, name, email } = await customerService.create({
+            name: req.body.name,
             email: req.body.email,
-        }).lean();
-
-        if (customerExists) {
-            throw new HttpError("Customer email already exists", 400);
-        }
-
-        const { id, name, email } = await CustomerModel.create(req.body);
-
+        });
         return res.json({ id, name, email });
     }
 
     async update(req, res) {
-        const customer = await CustomerModel.findById(req.params.id).lean();
-
-        if (!customer) {
-            throw new HttpError("Customer does not exist", 404);
-        }
-
-        if (req.body === { name: customer.name, email: customer.email }) {
-            throw new HttpError("Customer was not updated", 400);
-        }
-
-        const foundCustomer = await CustomerModel.findOne({
+        const { id, name, email } = await customerService.update({
+            id: req.params.id,
+            name: req.body.name,
             email: req.body.email,
-        }).lean();
-
-        if (foundCustomer && foundCustomer.id !== req.params.id) {
-            throw new HttpError("Customer email already exists", 400);
-        }
-
-        const { id, name, email } = await CustomerModel.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            {
-                new: true,
-            }
-        );
-
+        });
         return res.json({ id, name, email });
     }
 
     async delete(req, res) {
-        const { id: customerId } = req.params;
-
-        const customer = await CustomerModel.findById(customerId).lean();
-
-        if (!customer) {
-            throw new HttpError("Customer not found", 404);
-        }
-
-        await CustomerModel.deleteOne({ _id: customerId });
-
+        await customerService.delete(req.params.id);
         return res.json({ message: "Customer successfully removed " });
     }
 }

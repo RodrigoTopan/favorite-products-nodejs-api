@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
-const OBJECTID_REGEX = /^[0-9a-fA-F]{24}$/;
+import HttpError from "@utils/HttpError";
+
 class CustomerValidator {
     async index(req, res, next) {
         try {
@@ -12,7 +13,7 @@ class CustomerValidator {
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 
@@ -20,23 +21,23 @@ class CustomerValidator {
         try {
             const schema = Yup.object().shape({
                 name: Yup.string().required(),
-                email: Yup.string().required(),
+                email: Yup.string().email().required(),
             });
 
             await schema.validate(req.body, { abortEarly: false });
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 
     async update(req, res, next) {
         try {
             const schema = Yup.object().shape({
-                id: Yup.string().matches(OBJECTID_REGEX).required(),
+                id: Yup.string().required(),
                 name: Yup.string().required(),
-                email: Yup.string().required(),
+                email: Yup.string().email().required(),
             });
 
             await schema.validate(
@@ -46,20 +47,20 @@ class CustomerValidator {
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 
     async delete(req, res, next) {
         try {
             const schema = Yup.object().shape({
-                id: Yup.string().matches(OBJECTID_REGEX).required(),
+                id: Yup.string().required(),
             });
             await schema.validate(req.params, { abortEarly: false });
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 }

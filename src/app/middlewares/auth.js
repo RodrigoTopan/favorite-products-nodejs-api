@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 import { promisify } from "util";
 
-import authConfig from "../../configurations/auth";
+import authConfig from "@configurations/auth";
 
 export default async (req, res, next) => {
     const authHeader = req.headers.authorization;

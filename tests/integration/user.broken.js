@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-// import mongoose from "mongoose"; // Memory server
 import request from "supertest";
 import app from "../../src/app";
 
@@ -8,10 +7,9 @@ import CustomerModel from "../../src/app/models/Customer";
 
 describe("User", () => {
     beforeEach(async () => {
-        // Clear mock db
         await Promise.all([
-            CustomerModel.deleteMany({}),
             UserModel.deleteMany({}),
+            CustomerModel.deleteMany({}),
         ]);
     });
     it("should be able to create a user", async () => {

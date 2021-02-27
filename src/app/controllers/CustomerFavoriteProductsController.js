@@ -1,4 +1,4 @@
-import customerFavoriteProductsService from "../services/CustomerFavoriteProductsService";
+import customerFavoriteProductsService from "@services/CustomerFavoriteProductsService";
 
 class CustomerFavoriteProductController {
     async store(req, res) {

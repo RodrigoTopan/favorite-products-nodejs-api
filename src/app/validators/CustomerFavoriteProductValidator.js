@@ -1,34 +1,35 @@
 import * as Yup from "yup";
 
-const OBJECTID_REGEX = /^[0-9a-fA-F]{24}$/;
+import HttpError from "@utils/HttpError";
+
 class CustomerValidator {
     async store(req, res, next) {
         try {
             const schema = Yup.object().shape({
-                customerId: Yup.string().matches(OBJECTID_REGEX).required(),
-                productId: Yup.string().matches(OBJECTID_REGEX).required(),
+                customerId: Yup.string().required(),
+                productId: Yup.string().required(),
             });
 
             await schema.validate(req.params, { abortEarly: false });
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 
     async delete(req, res, next) {
         try {
             const schema = Yup.object().shape({
-                customerId: Yup.string().matches(OBJECTID_REGEX).required(),
-                productId: Yup.string().matches(OBJECTID_REGEX).required(),
+                customerId: Yup.string().required(),
+                productId: Yup.string().required(),
             });
 
             await schema.validate(req.params, { abortEarly: false });
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 }

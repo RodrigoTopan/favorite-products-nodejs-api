@@ -1,5 +1,7 @@
 import * as Yup from "yup";
 
+import HttpError from "@utils/HttpError";
+
 class SessionValidator {
     async store(req, res, next) {
         try {
@@ -12,7 +14,7 @@ class SessionValidator {
 
             next();
         } catch (error) {
-            return res.status(400).json({ error: "Validation fails" });
+            throw new HttpError("Validation fails", 400);
         }
     }
 }

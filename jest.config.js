@@ -76,7 +76,16 @@ module.exports = {
     // ],
 
     // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-    // moduleNameMapper: {},
+    moduleNameMapper: {
+        "^@services(.*)$": "<rootDir>/src/app/services$1",
+        "^@controllers(.*)$": "<rootDir>/src/app/controllers$1",
+        "^@models(.*)$": "<rootDir>/src/app/models$1",
+        "^@middlewares(.*)$": "<rootDir>/src/app/middlewares$1",
+        "^@validators(.*)$": "<rootDir>/src/app/validators$1",
+        "^@cache(.*)$": "<rootDir>/src/cache$1",
+        "^@utils(.*)$": "<rootDir>/src/utils$1",
+        "^@configurations(.*)$": "<rootDir>/src/configurations$1",
+    },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
     // modulePathIgnorePatterns: [],
@@ -120,7 +129,7 @@ module.exports = {
     // runner: "jest-runner",
 
     // The paths to modules that run some code to configure or set up the testing environment before each test
-    // setupFiles: [],
+    // setupFiles: ["./tests/integration/setup.spec.js"],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
     setupFilesAfterEnv: ["./jest-redis-config.js"],

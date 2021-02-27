@@ -6,6 +6,9 @@ import health from "express-healthcheck";
 
 import "express-async-errors";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from "./swagger.json";
+
 import routes from "./routes"; // import express-async errors before load routes
 
 import "./database";
@@ -26,6 +29,7 @@ class App {
 
     routes() {
         this.server.use("/health", health());
+        this.server.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
         this.server.use(routes);
     }
 }

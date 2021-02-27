@@ -1,20 +1,20 @@
 import { Router } from "express";
 
 // Controllers
-import userController from "./app/controllers/UserController";
-import sessionController from "./app/controllers/SessionController";
-import customerController from "./app/controllers/CustomerController";
-import customerFavoriteProductController from "./app/controllers/CustomerFavoriteProductsController";
+import userController from "@controllers/UserController";
+import sessionController from "@controllers/SessionController";
+import customerController from "@controllers/CustomerController";
+import customerFavoriteProductController from "@controllers/CustomerFavoriteProductsController";
 
 // API BASIC MIDDLEWARES
-import authMiddleware from "./app/middlewares/auth";
-import errorMiddleware from "./app/middlewares/error";
+import authMiddleware from "@middlewares/auth";
+import errorMiddleware from "@middlewares/error";
 
 // HTTP VALIDATORS
-import userValidator from "./app/validators/UserValidator";
-import sessionValidator from "./app/validators/SessionValidator";
-import customerValidator from "./app/validators/CustomerValidator";
-import CustomerFavoriteProductValidator from "./app/validators/CustomerFavoriteProductValidator";
+import userValidator from "@validators/UserValidator";
+import sessionValidator from "@validators/SessionValidator";
+import customerValidator from "@validators/CustomerValidator";
+import CustomerFavoriteProductValidator from "@validators/CustomerFavoriteProductValidator";
 
 const routes = new Router();
 

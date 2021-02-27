@@ -11,10 +11,11 @@ const schema = new Schema(
         email: {
             type: String,
             required: true,
+            unique: true,
         },
         favoriteProducts: {
             type: [ProductSchema],
-            required: false,
+            default: [],
         },
     },
     { timestamps: true }

@@ -1,7 +1,7 @@
 // Mongo connection
 import mongoose from "mongoose";
 
-import databaseConfig from "../configurations/database";
+import databaseConfig from "@configurations/database";
 
 class DatabaseConnector {
     constructor() {

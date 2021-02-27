@@ -6,6 +6,8 @@ import CustomerModel from "../models/Customer";
 
 import cache from "../../cache";
 
+const { DEFAULT_EXPIRE_CACHE = 300 } = process.env;
+
 class CustomerFavoriteProductsService {
     async add({ customerId, productId }) {
         await this.validateCustomer(customerId);
@@ -54,7 +56,11 @@ class CustomerFavoriteProductsService {
                 `${PRODUCTS_API_URL}/${id}/`
             );
 
-            await cache.setex(`PRODUCT:${id}`, 300, foundProduct);
+            await cache.setex(
+                `PRODUCT:${id}`,
+                DEFAULT_EXPIRE_CACHE,
+                foundProduct
+            );
             return foundProduct;
         } catch (error) {
             if (error.response && error.response.status === 404) {

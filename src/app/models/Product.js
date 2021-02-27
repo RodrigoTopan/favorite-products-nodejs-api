@@ -4,7 +4,7 @@ const ProductSchema = new Schema(
     {
         id: {
             type: String,
-            unique: true,
+            required: true,
         },
         price: {
             type: Number,

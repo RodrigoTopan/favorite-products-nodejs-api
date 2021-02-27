@@ -1,0 +1,35 @@
+version: '3'
+services:
+  code-challenge:
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    environment:
+      PORT: 8080
+      MONGO_URL: mongodb
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+
+  mongodb:
+    image: mongo:4
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - 27017:27017
+
+  portainer:
+    image: portainer/portainer
+    ports:
+      - '9000:9000'
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+# criamos o disco virtual em nossa maquina
+volumes:
+  mongo_data: {}
+  portainer_data: {}

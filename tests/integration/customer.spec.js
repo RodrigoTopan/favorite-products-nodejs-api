@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-// import mongoose from "mongoose"; // Memory server
+
 import request from "supertest";
 import app from "../../src/app";
 
@@ -9,6 +9,11 @@ import CustomerModel from "../../src/app/models/Customer";
 describe("Customer", () => {
     let token;
     beforeEach(async () => {
+        await Promise.all([
+            UserModel.deleteMany({}),
+            CustomerModel.deleteMany({}),
+        ]);
+
         await request(app).post("/user").send({
             username: "username",
             password: "password",
@@ -20,11 +25,12 @@ describe("Customer", () => {
         });
 
         token = response.body.token;
+    });
 
-        // Clear mock db
+    afterAll(async () => {
         await Promise.all([
-            CustomerModel.deleteMany({}),
             UserModel.deleteMany({}),
+            CustomerModel.deleteMany({}),
         ]);
     });
     it("should be able to create a customer when user API is authenticated", async () => {
@@ -133,6 +139,6 @@ describe("Customer", () => {
             });
 
         expect(response.status).toBe(400);
-        expect(response.body.error).toBe("Customer email already exists");
+        expect(response.body.error).toBe("Customer email already in use");
     });
 });
