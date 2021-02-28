@@ -1,7 +1,6 @@
-<!-- PROJECT LOGO -->
-<br />
+<div style="background: #000; border-radius: 10px; padding: 15px; opacity: 0.9">
 <p align="center">
-  <h3 align="center">PRODUCTOS FAVORITOS</h3>
+  <h3 align="center">&#129309; PRODUTOS FAVORITOS DOS CLIENTES</h3>
 
   <p align="justify">
     API de desafio que constitui em:<br>
@@ -12,14 +11,14 @@
     <ul>
   </p>
 </p>
-
+</div>
 
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Sumário</h2></summary>
   <ol>
-    <li><a href="#tjustifyech">Tecnologias Utilizadas</a></li>
+    <li><a href="#tech">Tecnologias Utilizadas</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -37,7 +36,7 @@
 
 <div id="tech"></div>
 
-## Tecnologias Utilizadas
+## &#128190; Tecnologias Utilizadas
 
 * [Node.JS](https://nodejs.org/en/)
 * [MongoDB](https://www.mongodb.com/)
@@ -54,7 +53,7 @@ Para instalar na sua máquina e rodar a aplicação siga os passos abaixo
 
 <div id="docker-installation"></div>
 
-### Instalação e uso com Docker
+### &#128051; Instalação e uso com Docker
 
 1. (No terminal) Clone o repositório
    ```sh
@@ -74,7 +73,7 @@ Para instalar na sua máquina e rodar a aplicação siga os passos abaixo
 
 <div id="prerequisites"></div>
 
-### Pré-requisitos (Instalação Manual)
+### &#128736; Pré-requisitos (Instalação Manual)
 
 * Instalar o npm ou Yarn
 
@@ -86,7 +85,7 @@ Para instalar na sua máquina e rodar a aplicação siga os passos abaixo
 
 <div id="installation"></div>
 
-### Instalação Manual
+### &#128640; Instalação Manual e Rodando o Projeto
 
 1. Clone o repositório
    ```sh
@@ -113,7 +112,7 @@ Para instalar na sua máquina e rodar a aplicação siga os passos abaixo
 
 <div id="tests"></div>
 
-### Testes de integração
+### &#9989; Testes de integração
 
 
 Para executar os testes automatizados,execute o comando abaixo. O relatório de cobertura dos testes é disponibilizado em tests/coverage
@@ -124,7 +123,7 @@ Para executar os testes automatizados,execute o comando abaixo. O relatório de 
 
 <div id="contact"></div>
 
-## Contato
+## &#128406; Contato
 
 Rodrigo Garcia Topan Moreira - [@linkedin](https://www.linkedin.com/in/rodrigotopan)
 

@@ -102,7 +102,7 @@
             "post": {
                 "security": [
                     {
-                        "bearerAuth": []
+                        "Bearer": []
                     }
                 ],
                 "summary": "Create a Customer",
@@ -151,6 +151,14 @@
                 "summary": "Find a customer by id",
                 "tags": ["Customers"],
                 "description": "Find a specified customer by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CustomerId",
+                        "type": "string"
+                    }
+                ],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -179,7 +187,7 @@
                     }
                 }
             },
-            "update": {
+            "put": {
                 "security": [
                     {
                         "Bearer": []
@@ -188,6 +196,14 @@
                 "summary": "Update a customer by id",
                 "tags": ["Customers"],
                 "description": "Update a specified customer by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CustomerId",
+                        "type": "string"
+                    }
+                ],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -225,6 +241,14 @@
                 "summary": "Delete a customer by id",
                 "tags": ["Customers"],
                 "description": "Delete a specified customer by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CustomerId",
+                        "type": "string"
+                    }
+                ],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -264,6 +288,20 @@
                 "summary": "Add a product into customer favorite products list",
                 "tags": ["Customers"],
                 "description": "Add a product into customer favorite products list",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "CustomerId",
+                        "type": "string"
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "ProductId",
+                        "type": "string"
+                    }
+                ],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -301,6 +339,20 @@
                 "summary": "Remove a product into customer favorite products list",
                 "tags": ["Customers"],
                 "description": "Remove a product into customer favorite products list",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "CustomerId",
+                        "type": "string"
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "ProductId",
+                        "type": "string"
+                    }
+                ],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
