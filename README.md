@@ -1,4 +1,4 @@
-<div style="background: #000; border-radius: 10px; padding: 15px; opacity: 0.9">
+<div style="background-color: #000; border-radius: 10px; padding: 15px; opacity: 0.9">
 <p align="center">
   <h3 align="center">&#129309; PRODUTOS FAVORITOS DOS CLIENTES</h3>
 

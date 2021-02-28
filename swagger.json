@@ -99,6 +99,51 @@
             }
         },
         "/customer": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Find all customers paginated",
+                "tags": ["Customers"],
+                "description": "Find all customers paginated by 20",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CustomerId",
+                        "type": "string"
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Customer",
+                        "schema": {
+                            "$ref": "#/definitions/FindCustomer"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Failed",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
             "post": {
                 "security": [
                     {
