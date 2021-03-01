@@ -26,6 +26,7 @@
         <li><a href="#prerequisites">Pre-requisitos</a></li>
         <li><a href="#installation">Instalação Manual</a></li>
         <li><a href="#tests">Testes Automatizados/ Testes de Integração</a></li>
+        <li><a href="#swagger">Documentação Swagger</a></li>
         <li><a href="#contact">Contato</a></li>
       </ul>
     </li>
@@ -119,6 +120,8 @@ Para executar os testes automatizados,execute o comando abaixo. O relatório de 
    ```sh
    yarn test ou npm run test
    ```
+Cobertura alcançada: 87.26%
+![Coverage](/assets/coverage.png)
 
 <div id="swagger"></div>
 
@@ -129,15 +132,15 @@ A documentação swagger é uma forma fácil de entender uma API. Ao iniciar o p
 
 Você irá observar a lista de todos os contratos e serviços. A criação de usuários e a criação de sessão autenticada são serviços abertos (não precisam de token)
 
-![alt text](https://github.com/RodrigoTopan/favorite-products-challenge/assets/swagger.png)
+![Swagger](/assets/swagger.png)
 
 Todos os serviços relacionados a gestão de clientes precisam de autenticação. Para isso utilize o token retornado na resposta do serviço "/session"
 
-![alt text](https://github.com/RodrigoTopan/favorite-products-challenge/assets/jwt.png)
+![JWT](/assets/jwt.png)
 
 Para se autenticar no swagger, informe "Bearer" + o token obtido, como resultado da abertura de sessão. Agora a gestão de clientes deverá estar habilitada!
 
-![alt text](https://github.com/RodrigoTopan/favorite-products-challenge/assets/authenticate.png)
+![AUTHENTICATION](/assets/authenticate.png)
 
 
 <div id="contact"></div>
