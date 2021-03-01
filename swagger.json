@@ -83,6 +83,12 @@
                             "$ref": "#/definitions/UserSessionResponse"
                         }
                     },
+                    "401": {
+                        "description": "Access denied",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
                     "400": {
                         "description": "Validation Failed",
                         "schema": {
@@ -110,10 +116,10 @@
                 "description": "Find all customers paginated by 20",
                 "parameters": [
                     {
-                        "name": "id",
-                        "in": "path",
-                        "description": "CustomerId",
-                        "type": "string"
+                        "name": "page",
+                        "in": "query",
+                        "description": "Number of page starting in 0",
+                        "type": "number"
                     }
                 ],
                 "produces": ["application/json"],
@@ -247,6 +253,14 @@
                         "in": "path",
                         "description": "CustomerId",
                         "type": "string"
+                    },
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "description": "Update customer basic info (name and email)",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
                     }
                 ],
                 "produces": ["application/json"],
@@ -254,7 +268,7 @@
                     "200": {
                         "description": "Customer",
                         "schema": {
-                            "$ref": "#/definitions/FindCustomer"
+                            "$ref": "#/definitions/UpdateCustomerResponse"
                         }
                     },
                     "400": {
@@ -481,6 +495,19 @@
             }
         },
         "CreateCustomerResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "UpdateCustomerResponse": {
             "properties": {
                 "id": {
                     "type": "string"

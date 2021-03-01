@@ -4,7 +4,7 @@ import HttpError from "../../utils/HttpError";
 import logger from "../../utils/Logger";
 import CustomerModel from "../models/Customer";
 
-const { DEFAULT_EXPIRE_CACHE = 300 } = process.env;
+const { DEFAULT_EXPIRE_CACHE = 100 } = process.env;
 
 class CustomerFavoriteProductsService {
     async add({ customerId, productId }) {
@@ -46,7 +46,7 @@ class CustomerFavoriteProductsService {
             const cachedProduct = await cache.get(`PRODUCT:${id}`);
             if (cachedProduct) {
                 logger.info("GETTING PRODUCT FROM CACHE");
-                return cachedProduct;
+                return JSON.parse(cachedProduct);
             }
 
             const { PRODUCTS_API_URL } = process.env;
@@ -57,8 +57,9 @@ class CustomerFavoriteProductsService {
             await cache.setex(
                 `PRODUCT:${id}`,
                 DEFAULT_EXPIRE_CACHE,
-                foundProduct
+                JSON.stringify(foundProduct)
             );
+
             return foundProduct;
         } catch (error) {
             if (error.response && error.response.status === 404) {

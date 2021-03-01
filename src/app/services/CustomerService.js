@@ -3,8 +3,6 @@ import CustomerModel from "@models/Customer";
 import HttpError from "@utils/HttpError";
 import logger from "@utils/Logger";
 
-const { DEFAULT_EXPIRE_CACHE = 300 } = process.env;
-
 class CustomerService {
     async findByPage({ page, limit = 20 }) {
         const cachedCustomers = JSON.parse(
@@ -24,7 +22,7 @@ class CustomerService {
 
         await cache.setex(
             `CUSTOMERS_PAGE:${page}`,
-            DEFAULT_EXPIRE_CACHE,
+            5,
             JSON.stringify(customers)
         );
 
@@ -60,7 +58,7 @@ class CustomerService {
 
         const foundCustomer = await CustomerModel.findOne({ email }).lean();
 
-        if (foundCustomer && foundCustomer.id !== id) {
+        if (foundCustomer && foundCustomer._id.toString() !== id) {
             throw new HttpError("Customer email already in use", 400);
         }
 

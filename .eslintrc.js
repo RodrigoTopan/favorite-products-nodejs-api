@@ -15,6 +15,7 @@ module.exports = {
         "consistent-return": "off",
         "prefer-default-export": "off",
         "class-methods-use-this": "off",
+        "no-underscore-dangle": "off",
         "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
     },
     settings: {

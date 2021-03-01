@@ -69,7 +69,7 @@ Para instalar na sua máquina e rodar a aplicação siga os passos abaixo
 
 5. Você pode consultar a documentação dos serviços através do SWAGGER em http://localhost:8080/doc/
 
-6. Se preferir, também disponibilizei na pasta "contracts", o arquivo dump do Insomnia e do Postman para você poder importa-lo na sua máquina
+6. Se preferir, também disponibilizei na pasta "docs", o arquivo dump do Insomnia e do Postman para você poder importa-lo na sua máquina
 
 <div id="prerequisites"></div>
 
@@ -107,7 +107,7 @@ Para instalar na sua máquina e rodar a aplicação siga os passos abaixo
 
 6. Você pode consultar a documentação dos serviços através do SWAGGER em http://localhost:8080/doc/
 
-7. Se preferir, também disponibilizei na pasta "contracts", o arquivo dump do Insomnia e do Postman com os para você poder importá-lo na sua máquina
+7. Se preferir, também disponibilizei na pasta "docs", o arquivo dump do Insomnia e do Postman com os para você poder importá-lo na sua máquina
 
 
 <div id="tests"></div>
@@ -119,6 +119,25 @@ Para executar os testes automatizados,execute o comando abaixo. O relatório de 
    ```sh
    yarn test ou npm run test
    ```
+
+<div id="swagger"></div>
+
+### &#128196; Documentação SWAGGER
+
+
+A documentação swagger é uma forma fácil de entender uma API. Ao iniciar o projeto, você pode consultar a documentação em http://localhost:8080/doc
+
+Você irá observar a lista de todos os contratos e serviços. A criação de usuários e a criação de sessão autenticada são serviços abertos (não precisam de token)
+
+![alt text](https://github.com/RodrigoTopan/favorite-products-challenge/assets/swagger.png)
+
+Todos os serviços relacionados a gestão de clientes precisam de autenticação. Para isso utilize o token retornado na resposta do serviço "/session"
+
+![alt text](https://github.com/RodrigoTopan/favorite-products-challenge/assets/jwt.png)
+
+Para se autenticar no swagger, informe "Bearer" + o token obtido, como resultado da abertura de sessão. Agora a gestão de clientes deverá estar habilitada!
+
+![alt text](https://github.com/RodrigoTopan/favorite-products-challenge/assets/authenticate.png)
 
 
 <div id="contact"></div>
